@@ -7,13 +7,15 @@ const AddFamily = () => {
 
   return (
     <React.Fragment>
-      <form onSubmit={addFamilyHandler}>
-        <label htmlFor="names">Names</label>
-        <input type="text" id="names" />
-        <label htmlFor="age">Age</label>
-        <input type="number" id="age" />
-        <button type="submit">Add Family</button>
-      </form>
+      <Card>
+        <form onSubmit={addFamilyHandler}>
+          <label htmlFor="names">Names</label>
+          <input type="text" id="names" />
+          <label htmlFor="age">Age</label>
+          <input type="number" id="age" />
+          <button type="submit">Add Family</button>
+        </form>
+      </Card>
     </React.Fragment>
   );
 };
