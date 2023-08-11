@@ -7,20 +7,28 @@ const AddFamily = () => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
 
-  const addFamilyHandler = (event) => {
-    event.preventDefault();
-
-    setEnteredName("");
-    setEnteredAge("");
-    console.log(enteredName, enteredAge);
-  };
-
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
   };
 
   const ageChangeHandler = (event) => {
     setEnteredAge(event.target.value);
+  };
+
+  const addFamilyHandler = (event) => {
+    event.preventDefault();
+
+    if (enteredName.trim().length === 0 || enteredAge.trim().length === 0) {
+      return;
+    }
+
+    if (enteredAge < 1) {
+      return;
+    }
+
+    setEnteredName("");
+    setEnteredAge("");
+    console.log(enteredName, enteredAge);
   };
 
   return (
