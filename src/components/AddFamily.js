@@ -1,4 +1,6 @@
 import React from "react";
+import Card from "./Card";
+import classes from "./AddFamily.module.css";
 
 const AddFamily = () => {
   const addFamilyHandler = (event) => {
@@ -7,7 +9,7 @@ const AddFamily = () => {
 
   return (
     <React.Fragment>
-      <Card>
+      <Card className={classes.input}>
         <form onSubmit={addFamilyHandler}>
           <label htmlFor="names">Names</label>
           <input type="text" id="names" />
