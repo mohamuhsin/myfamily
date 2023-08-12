@@ -19,10 +19,18 @@ const AddFamily = (props) => {
     event.preventDefault();
 
     if (enteredName.trim().length === 0 || enteredAge.trim().length === 0) {
+      {
+        title: "An Error Occured!";
+        message: "Please enter a valid value for Name and Age (non-empty values)";
+      }
       return;
     }
 
     if (enteredAge < 1) {
+      {
+        title: "Invalid Age";
+        message: "Please check the age should be > 0";
+      }
       return;
     }
 
@@ -33,6 +41,7 @@ const AddFamily = (props) => {
 
   return (
     <React.Fragment>
+      <ErrorModal />
       <Card className={classes.input}>
         <form onSubmit={addFamilyHandler}>
           <label htmlFor="names">Names</label>
