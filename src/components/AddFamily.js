@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Card from "./Card";
 import classes from "./AddFamily.module.css";
 import Button from "./Button";
+import ErrorModal from "./ErrorModal";
 
 const AddFamily = (props) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
+  const [error, setError] = useState("");
 
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -15,22 +17,27 @@ const AddFamily = (props) => {
     setEnteredAge(event.target.value);
   };
 
+  const errorHandler = () => {
+    setError(null);
+  };
+
   const addFamilyHandler = (event) => {
     event.preventDefault();
 
     if (enteredName.trim().length === 0 || enteredAge.trim().length === 0) {
-      {
-        title: "An Error Occured!";
-        message: "Please enter a valid value for Name and Age (non-empty values)";
-      }
+      setError({
+        title: "Invalid input",
+        message:
+          "Please enter a valid value for Name and Age (non-empty values)",
+      });
       return;
     }
 
     if (enteredAge < 1) {
-      {
-        title: "Invalid Age";
-        message: "Please check the age should be > 0";
-      }
+      setError({
+        title: "Invalid Age",
+        message: "Please check the age should be > 0",
+      });
       return;
     }
 
@@ -41,7 +48,13 @@ const AddFamily = (props) => {
 
   return (
     <React.Fragment>
-      <ErrorModal />
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
+        />
+      )}
       <Card className={classes.input}>
         <form onSubmit={addFamilyHandler}>
           <label htmlFor="names">Names</label>

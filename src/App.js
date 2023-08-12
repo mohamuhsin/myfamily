@@ -7,7 +7,10 @@ function App() {
 
   const addFamilyHandler = (fName, fAge) => {
     setFamilyList((prevFamilyList) => {
-      return [...prevFamilyList, { name: fName, age: fAge }];
+      return [
+        ...prevFamilyList,
+        { name: fName, age: fAge, id: Math.random().toString() },
+      ];
     });
   };
   return (
