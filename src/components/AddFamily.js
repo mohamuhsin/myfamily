@@ -3,7 +3,7 @@ import Card from "./Card";
 import classes from "./AddFamily.module.css";
 import Button from "./Button";
 
-const AddFamily = () => {
+const AddFamily = (props) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
 
@@ -28,7 +28,7 @@ const AddFamily = () => {
 
     setEnteredName("");
     setEnteredAge("");
-    console.log(enteredName, enteredAge);
+    props.onAddFamily(enteredName, enteredAge);
   };
 
   return (
