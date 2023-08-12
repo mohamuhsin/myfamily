@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Card from "./Card";
 import classes from "./AddFamily.module.css";
 import Button from "./Button";
 import ErrorModal from "./ErrorModal";
 
 const AddFamily = (props) => {
-  const [enteredName, setEnteredName] = useState("");
-  const [enteredAge, setEnteredAge] = useState("");
   const [error, setError] = useState("");
+
+  const nameChangeRef = useRef();
+  const ageChangeRef = useRef();
 
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -23,8 +24,10 @@ const AddFamily = (props) => {
 
   const addFamilyHandler = (event) => {
     event.preventDefault();
+    const enteredFName = nameChangeRef.current.value;
+    const enteredFAge = ageChangeRef.current.value;
 
-    if (enteredName.trim().length === 0 || enteredAge.trim().length === 0) {
+    if (enteredFName.trim().length === 0 || enteredFAge.trim().length === 0) {
       setError({
         title: "Invalid input",
         message:
@@ -33,7 +36,7 @@ const AddFamily = (props) => {
       return;
     }
 
-    if (enteredAge < 1) {
+    if (enteredFAge < 1) {
       setError({
         title: "Invalid Age",
         message: "Please check the age should be > 0",
@@ -41,9 +44,9 @@ const AddFamily = (props) => {
       return;
     }
 
-    setEnteredName("");
-    setEnteredAge("");
-    props.onAddFamily(enteredName, enteredAge);
+    nameChangeRef = "";
+    ageChangeRef = "";
+    props.onAddFamily(enteredFName, enteredFAge);
   };
 
   return (
